@@ -20,13 +20,13 @@ DROP TABLE IF EXISTS [TRANSACTIONS]
 CREATE TABLE [TRANSACTIONS] (
     TransID INT PRIMARY KEY,
     TransactionType VARCHAR(20) NOT NULL,
-    FromAccount VARCHAR(15) NOT NULL,
+    accNo VARCHAR(15) NOT NULL,
     TransDate DATETIME NOT NULL,
     amount FLOAT NOT NULL,
-    status VARCHAR(10) NOT NULL,
-    FOREIGN KEY (FromAccount) REFERENCES ACCOUNTS(accNo),
+    transStatus VARCHAR(10) NOT NULL,
+    FOREIGN KEY (accNo) REFERENCES ACCOUNTS(accNo),
     CONSTRAINT CHK_TransactionType CHECK (TransactionType IN ('DEPOSIT', 'WITHDRAW', 'TRANSFER', 'EXTERNALTRANSFER')),
-    CONSTRAINT CHK_TransactionStatus CHECK (status IN ('OPEN', 'CLOSE'))
+    CONSTRAINT CHK_TransactionStatus CHECK (transStatus IN ('OPEN', 'CLOSE'))
 );
 
 -- Create POLICY table
